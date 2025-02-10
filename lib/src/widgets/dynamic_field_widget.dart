@@ -2,16 +2,30 @@ import 'package:flutter/material.dart';
 import '../models/field_model.dart';
 import '../models/field_type.dart';
 
+/// Callback type for handling field updates.
 typedef OnFieldChanged = void Function(DynamicFieldModel updatedField);
 
+/// A widget for dynamically managing different types of form fields.
 class DynamicFieldWidget extends StatefulWidget {
+  /// The field model representing the dynamic field's properties.
   final DynamicFieldModel field;
+
+  /// Callback triggered when the field is updated.
   final OnFieldChanged? onFieldChanged;
+
+  /// Whether to show the field type selection.
   final bool showFieldType;
+
+  /// Input decoration for text fields.
   final InputDecoration? inputDecoration;
+
+  /// Button style for adding options.
   final ButtonStyle? addOptionButtonStyle;
+
+  /// A custom widget for displaying field options.
   final Widget? customOptionWidget;
 
+  /// Creates a dynamic field widget.
   const DynamicFieldWidget({
     Key? key,
     required this.field,
@@ -39,6 +53,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
     _initializeControllers();
   }
 
+  /// Initializes controllers for field name and options.
   void _initializeControllers() {
     fieldNameController = TextEditingController(text: widget.field.fieldName);
     selectedFieldType = widget.field.fieldType;
@@ -49,6 +64,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
         .toList();
   }
 
+  /// Updates the field and triggers the callback.
   void _updateField() {
     final updatedField = widget.field.copyWith(
       fieldName: fieldNameController.text,
@@ -77,6 +93,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
     );
   }
 
+  /// Builds the header containing the field name and type selection.
   Widget _buildHeader() {
     return Row(
       children: [
@@ -84,8 +101,8 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
           child: TextFormField(
             controller: fieldNameController,
             decoration: widget.inputDecoration?.copyWith(
-                  hintText: 'Field Name',
-                ) ??
+              hintText: 'Field Name',
+            ) ??
                 InputDecoration(
                   hintText: 'Field Name',
                   border: OutlineInputBorder(
@@ -102,9 +119,9 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
               value: selectedFieldType,
               items: FieldType.values
                   .map((type) => DropdownMenuItem(
-                        value: type,
-                        child: Text(type.value),
-                      ))
+                value: type,
+                child: Text(type.value),
+              ))
                   .toList(),
               onChanged: (value) {
                 if (value != null) {
@@ -118,8 +135,8 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
                 }
               },
               decoration: widget.inputDecoration?.copyWith(
-                    hintText: 'Field Type',
-                  ) ??
+                hintText: 'Field Type',
+              ) ??
                   InputDecoration(
                     hintText: 'Field Type',
                     border: OutlineInputBorder(
@@ -133,6 +150,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
     );
   }
 
+  /// Determines if options should be displayed for the selected field type.
   bool _shouldShowOptions() {
     return [
       FieldType.dropDown,
@@ -142,13 +160,14 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
     ].contains(selectedFieldType);
   }
 
+  /// Builds the section for managing field options.
   Widget _buildOptionsSection() {
     return Column(
       children: [
         const SizedBox(height: 16),
         ...List.generate(
           options.length,
-          (index) => _buildOptionItem(index),
+              (index) => _buildOptionItem(index),
         ),
         const SizedBox(height: 8),
         ElevatedButton(
@@ -160,6 +179,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
     );
   }
 
+  /// Builds a single option input field with a delete button.
   Widget _buildOptionItem(int index) {
     if (widget.customOptionWidget != null) {
       return widget.customOptionWidget!;
@@ -173,8 +193,8 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
             child: TextFormField(
               controller: optionControllers[index],
               decoration: widget.inputDecoration?.copyWith(
-                    hintText: 'Option ${index + 1}',
-                  ) ??
+                hintText: 'Option ${index + 1}',
+              ) ??
                   InputDecoration(
                     hintText: 'Option ${index + 1}',
                     border: OutlineInputBorder(
@@ -196,6 +216,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
     );
   }
 
+  /// Adds a new option field.
   void _addOption() {
     setState(() {
       options.add('');
@@ -204,6 +225,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
     });
   }
 
+  /// Removes an option field at the specified index.
   void _removeOption(int index) {
     setState(() {
       options.removeAt(index);
