@@ -101,8 +101,8 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
           child: TextFormField(
             controller: fieldNameController,
             decoration: widget.inputDecoration?.copyWith(
-              hintText: 'Field Name',
-            ) ??
+                  hintText: 'Field Name',
+                ) ??
                 InputDecoration(
                   hintText: 'Field Name',
                   border: OutlineInputBorder(
@@ -119,9 +119,9 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
               value: selectedFieldType,
               items: FieldType.values
                   .map((type) => DropdownMenuItem(
-                value: type,
-                child: Text(type.value),
-              ))
+                        value: type,
+                        child: Text(type.value),
+                      ))
                   .toList(),
               onChanged: (value) {
                 if (value != null) {
@@ -135,8 +135,8 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
                 }
               },
               decoration: widget.inputDecoration?.copyWith(
-                hintText: 'Field Type',
-              ) ??
+                    hintText: 'Field Type',
+                  ) ??
                   InputDecoration(
                     hintText: 'Field Type',
                     border: OutlineInputBorder(
@@ -167,7 +167,7 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
         const SizedBox(height: 16),
         ...List.generate(
           options.length,
-              (index) => _buildOptionItem(index),
+          (index) => _buildOptionItem(index),
         ),
         const SizedBox(height: 8),
         ElevatedButton(
@@ -193,8 +193,8 @@ class _DynamicFieldWidgetState extends State<DynamicFieldWidget> {
             child: TextFormField(
               controller: optionControllers[index],
               decoration: widget.inputDecoration?.copyWith(
-                hintText: 'Option ${index + 1}',
-              ) ??
+                    hintText: 'Option ${index + 1}',
+                  ) ??
                   InputDecoration(
                     hintText: 'Option ${index + 1}',
                     border: OutlineInputBorder(

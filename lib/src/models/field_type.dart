@@ -52,7 +52,7 @@ enum FieldType {
   /// ```
   static FieldType fromString(String value) {
     return FieldType.values.firstWhere(
-          (type) => type.value == value,
+      (type) => type.value == value,
       orElse: () => FieldType.shortAnswer,
     );
   }
