@@ -77,7 +77,8 @@ void main() {
       expect(find.byType(TextFormField), findsOneWidget);
     });
 
-    testWidgets('shows options for dropdown field type', (WidgetTester tester) async {
+    testWidgets('shows options for dropdown field type',
+        (WidgetTester tester) async {
       final field = DynamicFieldModel(
         fieldName: 'Dropdown Field',
         fieldType: FieldType.dropDown,

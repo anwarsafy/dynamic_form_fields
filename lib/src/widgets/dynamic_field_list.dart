@@ -7,7 +7,7 @@ class DynamicFieldList extends StatelessWidget {
   final void Function(String fieldId)? onDelete;
   final void Function(DynamicFieldModel field)? onFieldChanged;
   final Widget Function(BuildContext, DynamicFieldModel)? itemBuilder;
-  final ReorderItemProxyDecorator? proxyDecorator;  // Changed type here
+  final ReorderItemProxyDecorator? proxyDecorator; // Changed type here
 
   const DynamicFieldList({
     Key? key,
@@ -65,7 +65,8 @@ class DynamicFieldList extends StatelessWidget {
   }
 
   // Default proxy decorator function
-  Widget defaultProxyDecorator(Widget child, int index, Animation<double> animation) {
+  Widget defaultProxyDecorator(
+      Widget child, int index, Animation<double> animation) {
     return AnimatedBuilder(
       animation: animation,
       builder: (BuildContext context, Widget? child) {

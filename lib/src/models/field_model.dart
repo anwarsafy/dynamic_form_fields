@@ -35,12 +35,13 @@ class DynamicFieldModel extends Equatable {
       isRequired: json['isRequired'],
       options: json['options'],
       index: json['index'],
-      dateTime: json['dateTime'] != null ? DateTime.parse(json['dateTime']) : null,
+      dateTime:
+          json['dateTime'] != null ? DateTime.parse(json['dateTime']) : null,
       dateTimeRange: json['dateTimeRange'] != null
           ? DateTimeRange(
-        start: DateTime.parse(json['startDate']),
-        end: DateTime.parse(json['endDate']),
-      )
+              start: DateTime.parse(json['startDate']),
+              end: DateTime.parse(json['endDate']),
+            )
           : null,
       additionalData: json['additionalData'],
     );
@@ -86,14 +87,14 @@ class DynamicFieldModel extends Equatable {
 
   @override
   List<Object?> get props => [
-    id,
-    fieldName,
-    fieldType,
-    isRequired,
-    options,
-    index,
-    dateTime,
-    dateTimeRange,
-    additionalData,
-  ];
+        id,
+        fieldName,
+        fieldType,
+        isRequired,
+        options,
+        index,
+        dateTime,
+        dateTimeRange,
+        additionalData,
+      ];
 }
