@@ -42,9 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   void _printFields() {
-    print('Form Fields:');
+    debugPrint('Form Fields:');
     for (var field in fields) {
-      print('''
+      debugPrint('''
 Field ID: ${field.id}
 Field Name: ${field.fieldName}
 Field Type: ${field.fieldType}
