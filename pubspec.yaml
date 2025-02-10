@@ -1,6 +1,6 @@
 name: dynamic_form_fields
 description: A Flutter package for creating dynamic form fields with support for various field types and backend integration
-version: 0.0.2
+version: 0.0.3
 homepage:  https://github.com/anwarsafy/dynamic_form_fields
 repository: https://github.com/anwarsafy/dynamic_form_fields
 issue_tracker: https://github.com/anwarsafy/dynamic_form_fields/issues
